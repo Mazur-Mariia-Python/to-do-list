@@ -6,9 +6,6 @@
   <form action="" method="post" novalidate>
     {% csrf_token %}
     {{ form|crispy }}
-    <a>{{created_at|date:"F d Y" }}</a>
-{#    <p>Birthday: {{ created_at|date:"M d Y" }}</p>#}
-
     <input type="submit" value="Submit" class="btn btn-primary">
   </form>
 {% endblock %}

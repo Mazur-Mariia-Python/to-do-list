@@ -3,7 +3,7 @@ from django import forms
 from .models import Task, Tag
 
 
-class TaskForm(forms.ModelForm):
+class TaskForm(forms.Form):
 
     class Meta:
         model = Task

@@ -31,16 +31,16 @@
             <br>
 
             <div class="flex-container float-left">
-              <a class="flex-container text-dark">Created: {{ task.created_at }}</a>
+              <a class="flex-container text-dark">Created: {{ task.created_at|date:"F d, Y," }} {{ task.created_at|time:"g:i a" }}</a>
+
               {% if task.deadline %}
-                <a class="flex-container text-danger"> <span style="color:brown">Deadline: {{ task.deadline }}</span></a>
+                <a class="flex-container text-danger"> <span style="color:brown">Deadline: {{ task.deadline|date:"F d, Y," }} {{ task.deadline|time:"g:i a" }}</span></a>
               {% else %}
                 <a class="flex-container d-none"> Deadline: {{ task.deadline }}</a>
               {% endif %}
             </div><br>
 
             <div class="flex-container float-left text-muted">Tags:
-{#            <p class="font-weight-bold float-left mb-0"></p>#}
               {% for tag in task.tags.all %}
                 <a class="flex-container text-muted mb-0 ml-1"> {{ tag.name }}</a>
               {% endfor %}

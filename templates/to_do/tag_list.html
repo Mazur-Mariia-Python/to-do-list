@@ -3,7 +3,6 @@
 {% block content %}
   <h1>
     Tags
-{#    <a class="btn btn-primary link-to-page">Add</a>#}
     <a href="{% url 'to_do:tag-create' %}" class="btn btn-primary link-to-page">
       Add
     </a>
@@ -30,6 +29,3 @@
       <p>There are no tags in tasks.</p>
   {% endif %}
 {% endblock %}
-
-{## Якщо назвати файл tag_list то не працює#}
-{## Якщо назвати файл tags_list то працює#}
