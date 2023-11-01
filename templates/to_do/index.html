@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    TODO List
+    <a href="{% url 'to_do:task-create' %}" class="btn btn-primary link-to-page">
+      Add task
+    </a>
+  </h1>
+
+  {% if tasks_list %}
+    <table class="table">
+      {% for task in tasks_list %}
+        <tr>
+          <td>
+            <p class="font-weight-bold float-left mb-0">
+             {{ task.content }}
+            </p>
+            {% if task.completed %}
+              <p class="font-weight-bold text-success float-left ml-1 mb-0">Done</p>
+              <a href="{% url 'to_do:index' %}" class="btn btn-secondary link-to-page">
+                Undo
+              </a>
+
+            {% else %}
+              <p class="font-weight-bold text-danger float-left ml-1 mb-0">  Not done</p>
+              <a href="{% url 'to_do:index' %}" class="btn btn-success link-to-page">
+                Complete
+              </a>
+            {% endif %}
+            <br>
+
+            <div class="flex-container float-left">
+              <a class="flex-container text-dark">Created: {{ task.created_at }}</a>
+              {% if task.deadline %}
+                <a class="flex-container text-danger"> <span style="color:brown">Deadline: {{ task.deadline }}</span></a>
+              {% else %}
+                <a class="flex-container d-none"> Deadline: {{ task.deadline }}</a>
+              {% endif %}
+            </div><br>
+
+            <div class="flex-container float-left text-muted">Tags:
+{#            <p class="font-weight-bold float-left mb-0"></p>#}
+              {% for tag in task.tags.all %}
+                <a class="flex-container text-muted mb-0 ml-1"> {{ tag.name }}</a>
+              {% endfor %}
+              <a class="flex-container text-primary ml-1">Update </a><a href="#" class="flex-container text-primary ml-1"> Delete</a>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  {% else %}
+    <p>There are no tags in tasks.</p>
+  {% endif %}
+{% endblock %}
